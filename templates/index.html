@@ -1,0 +1,172 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link rel='stylesheet' href='https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap5.min.css'>
+{% endblock %}
+
+{% block content %}
+
+<div class="card">
+    <h5 class="card-header bg-body-tertiary bg-dark" data-bs-theme="dark">Monitoring </h5>
+    <div class="card-body">
+        <div class="row">
+
+
+            <div class="col-3" id="info_moisture">
+
+                <p>Your Plants <span id="watering"></span> </p>
+                <p>External Temperature : <span id="ext_temp"></span></p>
+                <p>External Humidity : <span id="ext_humid"></span> </p>
+                <p>Moisture Percentage level :<span id="moist_pct"></span></p>
+                <p>Your Soil is <span id="soil_status"></span></p>
+                <p>Actions:<span id="actions"></span></p>
+            </div>
+            <div class="col-3">
+                <canvas id="myGauge" height="200"></canvas>
+                <script src="{{ url_for('static', filename='js/gauge1.js') }}"></script>
+            </div>
+            <div class="col-3" id="info_external_area">
+                <canvas id="myGauge2" height="200"></canvas>
+                <script src="{{ url_for('static', filename='js/gauge2.js') }}"></script>
+            </div>
+            <div class="col-3">
+                <canvas id="myGauge3" height="200"></canvas>
+                <script src="{{ url_for('static', filename='js/gauge3.js') }}"></script>
+
+
+
+            </div>
+
+
+
+
+
+
+
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-6">
+        <div class="card">
+            <h5 class="card-header bg-body-tertiary bg-dark" data-bs-theme="dark">Humidity-external-area</h5>
+            <div class="card-body">
+                <canvas id="myChart2" width="300" height="100"></canvas>
+                <hr>
+                <button onclick="resetZoomChart2()">Reset</button>
+                <input onchange="filterData2()" type="date" id="startdate" value="2023-11-20">
+                <input onchange="filterData2()" type="date" id="enddate" value="2023-11-22">
+                <!-- Include your Chart.js configuration -->
+                <script src="{{ url_for('static', filename='js/chart2.js') }}"></script>
+            </div>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="card">
+            <h5 class="card-header bg-body-tertiary bg-dark" data-bs-theme="dark">Temperature-external-area</h5>
+            <div class="card-body">
+                <!--   <h1 style="text-align:center;">Time series Plot</h1>  -->
+                <canvas id="myChart1" width="300" height="100"></canvas>
+                <hr>
+                <button onclick="resetZoomChart()">Reset</button>
+                <input onchange="filterData()" type="date" id="startdate" value="2023-11-20">
+                <input onchange="filterData()" type="date" id="enddate" value="2023-11-22">
+                <!-- Include your Chart.js configuration -->
+                <script src="{{ url_for('static', filename='js/chart.js') }}"></script>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <h5 class="card-header bg-body-tertiary bg-dark" data-bs-theme="dark">Humidity-internal-area</h5>
+            <div class="card-body">
+                <canvas id="mychart3" width="300" height="40"></canvas>
+                <hr>
+                <button onclick="resetZoomChart3()">Reset</button>
+                <input onchange="filterData3()" type="date" id="startdate" value="2023-11-20">
+                <input onchange="filterData3()" type="date" id="enddate" value="2023-11-22">
+
+                <script src="{{ url_for('static', filename='js/chart3.js') }}"></script>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="card">
+    <h5 class="card-header bg-body-tertiary bg-dark" data-bs-theme="dark">Dataset</h5>
+    <div class="card-body">
+        <div class="container">
+            <table id="data" class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Timestamp</th>
+                        <th>External Temp</th>
+                        <th>Moisture%</th>
+                        <th>External Humidity</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for record in records %}
+                    <tr>
+
+                        <td>{{ record.datetime }}</td>
+                        <td>{{ record.temperature }}</td>
+                        <td>{{ record.humidity }}</td>
+                        <td>{{ record.soil_moisture }}</td>
+                        <td>
+                            {% if record.soil_moisture >= 41 and record.soil_moisture <= 61 %} Good Moisture {%
+                                elif record.soil_moisture> 61 %}
+                                High Moisture
+                                {% elif record.soil_moisture < 41 %} Need Watering {% endif %} </td>
+
+
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+
+
+    </div>
+</div>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+
+<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"
+        integrity="sha512-UXumZrZNiOwnTcZSHLOfcTs0aos2MzBWHXOHOuB0J/R44QB0dwY5JgfbvljXcklVf65Gc4El6RjZ+lnwd2az2g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-zoom/2.0.1/chartjs-plugin-zoom.min.js"
+        integrity="sha512-wUYbRPLV5zs6IqvWd88HIqZU/b8TBx+I8LEioQ/UC0t5EMCLApqhIAnUg7EsAzdbhhdgW07TqYDdH3QEXRcPOQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-gauge"></script>
+
+
+{% endblock %}
+
+
+
+   
+    
+</body>
+
+</html>

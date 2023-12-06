@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    
+      <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+    <title>Document</title>
+</head>
+<body>
+    <section class="h-100 gradient-form" style="background-color: #176e41b3;">
+        <div class="container py-5 h-100">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-xl-10">
+              <div class="card rounded-3 text-black">
+                <div class="row g-0">
+                  <div class="col-lg-6">
+                    <div class="card-body p-md-5 mx-md-4">
+                      <div class="text-center">
+                        <img src="{{ url_for('static', filename='/images/plant.svg') }}" style="width: 100px;" alt="logo">
+                        <h4 class="mt-1 mb-5 pb-1">Digiveget</h4>
+                      </div>  
+
+                      <form class="needs-validation" action="/login" method="post" novalidate>
+                        <div class="form_elements">
+<p>
+                          {% if session['message'] %} {{session['message']}} {% else %}
+                          Please login to your account {% endif %}
+
+                        </p>
+                        <div class="form-outline mb-4">
+                            <label class="form-label" >Username</label>
+                          <input required type="text" name="username" class="form-control"
+                            placeholder="Username" />
+                            <div class="invalid-feedback">
+                              Provide valid username
+                          </div>
+                          
+                        </div>
+      
+                        <div class="form-outline mb-4">
+                            <label class="form-label"  >Password</label>
+                          <input  required type="password" name="password" class="form-control"  placeholder="Password"/>
+                          <div class="invalid-feedback">
+                            Provide valid password
+                        </div>
+                        </div>
+                      </div>
+
+                        <div class="text-center pt-3 mb-5 pb-1 validation-submit">
+                          <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3 w-100" onclick="validateForm(event)" id ="valider" type="submit" aria-hidden="true">Log
+                            in    </button>
+                  
+                        </div>
+                      
+                      </form>
+                    </div>
+                  </div>
+                  <div class="col-lg-6 d-flex align-items-center gradient-custom-2" style="background-image: url('{{ url_for('static', filename='images/plant_bck.webp') }}'); background-size: cover; background-position: center;">
+                    <div class="text-white px-3 py-4 p-md-5 mx-md-4 w-100">
+                        <h4 class="mb-6" style="text-align:center; font-size:40px ">Digiveget</h4>
+                        <!-- <p class="small mb-6" style="text-align:center; font-size:25px ; color :#570e46 ; font-weight:bold ; font-family: Cursive, Helvetica, sans-serif" >Dive Into digital agriculture  , new technologies For a bright Future 🍌</p> -->
+                    </div>
+                </div>
+                
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <script src="{{ url_for('static', filename='js/script_login.js') }}"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"></script>
+</body>
+</html>

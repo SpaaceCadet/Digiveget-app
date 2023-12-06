@@ -1,0 +1,6 @@
+gunicorn==20.1.0
+pyodbc
+flask_session
+sqlalchemy
+python-dotenv
+flask

@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+
+
+{% block head %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='about.css') }}">
+
+
+     {% endblock %}
+
+{% block content %}
+<div class="row text-center mt-0"> <h1 class="bg-body-tertiary bg-dark text-light-emphasis" data-bs-theme="dark">About this project</h1></div>
+<div class="row">
+  
+    <div class="text-center">
+        <img src="{{ url_for('static', filename='images/soil.png') }}" class="rounded" alt="...">
+      </div>
+    
+</div>
+<div class="row mt-2">
+
+    <div class="col-2"></div>
+
+    <div class="col-8">
+<h1> I-Digital Agriculture</h1>
+<div class="ms-3">
+        <p>Digital agriculture, often referred to as precision agriculture or smart farming, involves the use of technology and data-driven solutions to optimize various aspects of farming operations. This integration of technology into agriculture aims to improve efficiency, productivity, and sustainability in food production.</p>
+
+<h2>Precision Farming</h2>
+
+<ul>
+    <li><strong>Satellite Imagery and GPS Technology:</strong> Satellite imagery and GPS enable farmers to map their fields and gather data on soil variability.</li>
+    <li><strong>Drones and Unmanned Aerial Vehicles (UAVs):</strong> Drones equipped with cameras and sensors can monitor crop health and assess field conditions.</li>
+    <li><strong>Variable Rate Technology (VRT):</strong> VRT allows farmers to vary input rates within a field based on real-time data, optimizing resource use.</li>
+</ul>
+
+<h2>IoT in Agriculture</h2>
+
+<ul>
+    <li><strong>Sensor Technology:</strong> IoT devices, such as soil moisture sensors, weather stations, and crop monitoring devices, collect real-time data on various environmental factors.</li>
+    <li><strong>Connected Machinery:</strong> Farm equipment equipped with sensors and connectivity can be monitored and controlled remotely.</li>
+</ul>
+
+<h2>Data Analytics and Farm Management Software</h2>
+
+<ul>
+    <li><strong>Big Data Analytics:</strong> Large-scale data analytics help farmers analyze historical data, weather patterns, and market trends.</li>
+    <li><strong>Farm Management Software:</strong> Software platforms assist farmers in planning, monitoring, and managing various aspects of their operations.</li>
+
+
+
+</ul>
+
+</div>
+    </div>
+
+    <div class="col-2"></div>
+
+</div>
+
+<div class="row">
+<div class="col-2"></div>
+<div class="col-8">
+    <h1> II-Smart Irrigation System</h1>
+    <div class="ms-3">
+            <p>An IoT-based irrigation system leverages Internet of Things (IoT) devices and technologies to enhance the efficiency, precision, and control of water distribution in agricultural fields. These systems utilize sensors, connectivity, and data analytics to monitor 
+                and manage irrigation processes. Here's an overview of how an IoT-based irrigation system works</p>
+    
+
+    <ul>
+        <li><strong>Architecture:</strong> The Architecture is composed with An Arduino Board , with dht 11 Sensor , Wifi module esp 8266 , Soil moisture sensor , The data 
+        Retrieved from these sensors is sent to a local server through sockets and then The server reacts and Send the data to the database which is an Azure Database , and Then The webapp requests data each 1 min in order to update components , For monitoring purposes. </li>
+        <div class="text-center">
+            <img src="{{ url_for('static', filename='images/architecture.png') }}" class="rounded" alt="..." width="60%">
+            <figcaption class="figure-caption text-center">Architecture Of The system</figcaption>
+          </div>
+          <br>
+
+          <li><strong>Deployment:</strong> The whole Architecture was deployed using Docker containers , That gets pushed to Docker hub each time we do some modification to the website using  Github workflows , The main code exists in github which is a version control system for code ,And Then using Azure Services we are able to deploy our database and webapp using Azure webapp service . </li>
+          <div class="row">
+            <div class="col">
+                
+            <img src="{{ url_for('static', filename='images/docker.png') }}" class="rounded" alt="..." width="100%" height="200px">
+            <figcaption class="figure-caption text-center">Docker</figcaption>
+
+        </div>
+        <div class="col">
+            <img src="{{ url_for('static', filename='images/app_service_az.png') }}" class="rounded" alt="..." width="100%" height="200px">
+            <figcaption class="figure-caption text-center">Azure App service.</figcaption>
+
+        </div>
+        <div class="col">
+
+            <img src="{{ url_for('static', filename='images/git.png') }}" class="rounded" alt="..." width="100%" height="200px">
+            <figcaption class="figure-caption text-center">Github.</figcaption>
+
+        </div>
+
+          </div>
+          <br>
+        
+          <li><strong>Soil Moisture Sensors:</strong> IoT-enabled soil moisture sensors are placed in the root zone of plants. These sensors measure the moisture content of the soil,
+        There are many types of sensors  : Cpacitive and resestive , The resistive ones respond very quickly but they suffer from corrosion. 
+        The one we've used is a resistive one , You should note to use this sensor you need to calibrate it, so it'll give you exact percentage of moisture.
+        </li>
+        
+        
+    <div class="text-center">
+        <img src="{{ url_for('static', filename='images/moisture_sensor.png') }}" class="rounded" alt="..." width="40%">
+        <figcaption class="figure-caption text-center">Soil moisture sensor</figcaption>
+      </div>
+        <li><strong>Weather Stations:</strong> Weather sensors collect data on environmental conditions, including temperature, humidity, wind speed, and precipitation , The sensor we've used is a dht 11 sensor , This sensor captures relative Humidity percentage and temperature 
+            in celsius,This will help us in monitoring , in order to adjust water pump based on the history of weather.
+        </li>
+        <div class="text-center">
+            <img src="{{ url_for('static', filename='images/dht11.png') }}" class="rounded" alt="..." width="40%">
+            <figcaption class="figure-caption text-center">dht 11 sensor</figcaption>
+
+          </div>
+    </ul>
+    
+    <!-- Add more sections as needed -->
+    
+  
+    
+    </div>
+        </div>
+    
+<div class="col-2"></div>
+
+
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+
+
+{% endblock %}

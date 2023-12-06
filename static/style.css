@@ -1,0 +1,100 @@
+.navbar-brand{
+
+    font-size: 24px; /* Adjust the size to your preference */
+
+    font-weight: bold;
+
+}
+nav .navbar-nav {
+
+width : 100%;
+
+
+}
+
+.nav .navbar-nav .nav_item {
+justify-content: end;
+
+width: 100%;
+
+} 
+
+#navbarNavAltMarkup{
+
+    font-size: 20px; /* Adjust the size to your preference */
+    
+    font-weight: bold;
+    font-style: italic;
+}
+
+.card-img-top{
+    height: 150px;
+    object-fit: cover;
+}
+
+footer {
+    background-image: url('./images/plant_bck.webp'); /* Specify the path to your image */
+    background-size: cover; /* Cover the entire footer with the background image */
+    color: #fff;
+    text-align: center;
+   
+    margin-top: auto; 
+   /* padding: 50px 20px;  Adjust the padding as needed */
+  }
+
+  /* Style for the copyright section within the footer */
+  .copyright {
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 24px;
+  }
+
+  .card-header{
+   text-align: center;
+
+  }
+
+  .content {
+    flex: 1; /* Grow to fill the available space */
+    padding: 20px;
+  }
+
+
+  body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    min-height: 100vh; /* Set the minimum height of the body to 100% of the viewport height */
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card-header{
+color:white;
+
+  }
+
+  .card{
+ margin:0;
+
+  }
+
+  #info_moisture{
+font-size: 11px;
+font-weight:bold;
+display: flex;
+flex-direction: column;
+justify-content: center;
+/*align-items: center;*/
+height: 200px; /* Set the desired height */
+border: 1px solid #ccc; /* Optional: Add a border for visualization */
+
+}
+
+
+
+
+  body {
+    zoom: 80%; /* Adjust the percentage as needed */
+}
+  
